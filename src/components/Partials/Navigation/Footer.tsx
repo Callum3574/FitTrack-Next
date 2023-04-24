@@ -9,9 +9,9 @@ interface FooterProps {}
 
 const Footer: FC<FooterProps> = ({}) => {
   return (
-    <div className="max-w-[1240px] mx-auto py-4 px-4 grid lg:grid-cols-3 gap-8 text-gray-300 my-5 pl-6 ">
+    <div className="max-w-[1480px] mx-auto py-4 px-4 grid lg:grid-cols-3 gap-8 text-gray-300 my-5 pl-6 max-w-full  ">
       <div data-aos="fade-down">
-        <h1 className="w-full text-3xl font-bold text-[#53B3CB] ">FitTrack.</h1>
+        <h1 className="w-full text-3xl font-thin text-[#53B3CB] ">FitTrack.</h1>
         <p className="py-4 ">
           Looking for a reliable and effective way to track your fitness
           progress? Look no further than FitTrack, the ultimate fitness website
@@ -27,7 +27,6 @@ const Footer: FC<FooterProps> = ({}) => {
         <div className="" data-aos="fade-down">
           <ul>
             <li className="text-lg py-2">Quick Links</li>
-
             <li className="text-sm py-2">Home</li>
             <li className="text-sm py-2">About</li>
             <li className="text-sm py-2">Workouts</li>

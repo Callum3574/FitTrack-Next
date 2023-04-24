@@ -1,9 +1,12 @@
 import { FC } from "react";
 import { Typewriter } from "react-simple-typewriter";
+import { useSession } from "next-auth/react";
 
 interface HeroProps {}
 
 const Hero: FC<HeroProps> = ({}) => {
+  const { data: session } = useSession();
+
   return (
     <div className="text-white">
       <div className="max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
@@ -34,7 +37,7 @@ const Hero: FC<HeroProps> = ({}) => {
           share your interest in fitness and wellness.
         </p>
         <button className="bg-[#53B3CB] w-[200px] rounded-md font-medium my-4 mx-auto py-3 text-black">
-          JOIN NOW
+          {!session ? "JOIN NOW" : "DASHBOARD"}
         </button>
       </div>
     </div>

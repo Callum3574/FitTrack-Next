@@ -1,4 +1,4 @@
-import Signup from "@/components/Auth/Login";
+import Login from "@/components/Auth/Login";
 import { FC } from "react";
 
 interface indexProps {}
@@ -6,7 +6,7 @@ interface indexProps {}
 const index: FC<indexProps> = ({}) => {
   return (
     <div>
-      <Signup />
+      <Login />
     </div>
   );
 };

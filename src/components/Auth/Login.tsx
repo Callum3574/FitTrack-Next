@@ -68,10 +68,9 @@ const Login: FC<SignupProps> = ({}) => {
             <label className="block text-gray-500 font-bold my-4">
               <input type="checkbox" className="leading-loose text-pink-600" />
               <span className="py-2 text-sm text-gray-600 leading-snug">
-                {" "}
-                Remember Me{" "}
+                Remember Me
               </span>
-            </label>{" "}
+            </label>
             <label className="block text-gray-500 font-bold my-4">
               <a
                 href="/"
@@ -86,7 +85,7 @@ const Login: FC<SignupProps> = ({}) => {
               href="/signup"
               className="cursor-pointer tracking-tighter text-black border-b-2 border-gray-200 hover:border-gray-400"
             >
-              <span>Don't have an account? Sign-Up!</span>
+              <span>Dont have an account? Sign-Up!</span>
             </a>
           </label>
         </form>

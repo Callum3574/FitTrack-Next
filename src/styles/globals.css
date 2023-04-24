@@ -5,3 +5,14 @@
 body {
   background-color: #0c090d;
 }
+
+/* CSS media query for mobile devices */
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr; /* Change to single column layout */
+  }
+
+  .col-span-2 {
+    order: 2; /* Change the order of navbar to make it display above everything */
+  }
+}

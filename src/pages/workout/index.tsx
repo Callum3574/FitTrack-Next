@@ -1,14 +1,12 @@
 import DashNav from "@/components/DashNav/DashNav";
-import Image from "next/image";
-import { FC } from "react";
-import { useSession } from "next-auth/react";
 import FitnessOverview from "@/components/FitnessOverview/FitnessOverview";
 import ProgressCard from "@/components/Progress/ProgressCard";
 import Totals from "@/components/Totals/Totals";
 import RecentActivity from "@/components/RecentActivity/RecentActivity";
 import ProfileCard from "@/components/ProfileCard/ProfileCard";
-import { DashboardProps, SessionProps } from "../../../Types";
+import { DashboardProps } from "../../../Types";
 import { NextPage } from "next";
+import { useSession } from "next-auth/react";
 
 const Dashboard: NextPage<DashboardProps> = ({}) => {
   const { data: session }: { data: any } = useSession();

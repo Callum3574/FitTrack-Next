@@ -1,25 +1,29 @@
 import { FC, useState } from "react";
 import { AmountOfInputs, FormInput } from "../../../Types";
+import { useSession } from "next-auth/react";
 
 interface AddExerciseProps {}
 
 const AddExercise: FC<AddExerciseProps> = ({}) => {
+  const { data: session }: { data: any } = useSession();
+
   const [amountOfInputs, setAmountOfInputs] = useState<AmountOfInputs[]>([
     { name: "ExerciseType", type: "text" },
     { name: "Location", type: "text" },
     { name: "Duration", type: "number" },
     { name: "Calories", type: "number" },
-    { name: "TimeAndDatee", type: "datetime-local" },
+    { name: "TimeAndDate", type: "datetime-local" },
     { name: "Distance", type: "number" },
   ]);
 
   const [formInput, setFormInput] = useState<FormInput>({
-    ExerciseType: "",
-    Location: "",
-    Duration: "",
-    Calories: "",
-    TimeAndDate: "",
-    Distance: "",
+    exerciseType: "",
+    location: "",
+    duration: "",
+    calories: "",
+    timeAndDate: "",
+    distance: "",
+    user: session?.user.email,
   });
 
   const handleFormInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -29,11 +33,30 @@ const AddExercise: FC<AddExerciseProps> = ({}) => {
     });
   };
 
+  const handleFormSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(
+        "http://localhost:3000/api/addworkout/addexercise",
+        {
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
+          body: JSON.stringify({ formInput }),
+        }
+      );
+    } catch (e) {
+      throw e;
+    }
+  };
+
   return (
     <div className="">
       <h1 className="text-2xl text-white text-center">Add new exercise</h1>
 
-      <form className="flex flex-col items-center justify-center">
+      <form
+        onSubmit={handleFormSubmit}
+        className="flex flex-col items-center justify-center"
+      >
         {amountOfInputs.map((inputType: AmountOfInputs, i: number) => {
           return (
             <div key={i} className="form-control w-full max-w-xs">

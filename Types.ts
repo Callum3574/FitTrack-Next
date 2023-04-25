@@ -24,10 +24,11 @@ export interface AmountOfInputs {
 }
 
 export interface FormInput {
-  ExerciseType: string;
-  Location: string;
-  Duration: string;
-  Calories: string;
-  TimeAndDate: string;
-  Distance: string;
+  exerciseType: string;
+  location: string;
+  duration: string;
+  calories: string;
+  timeAndDate?: string;
+  distance: string;
+  user: string;
 }

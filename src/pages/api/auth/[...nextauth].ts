@@ -2,6 +2,7 @@ import { checkUserExists } from "@/utils/checkUserExists";
 import NextAuth, { NextAuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "../../../../prisma/primsa";
+import Error from "next/error";
 
 //setting up Google Provider
 export const authOptions: NextAuthOptions = {
@@ -19,12 +20,16 @@ export const authOptions: NextAuthOptions = {
     async session({ session }: any) {
       //Checking if user is on DB
       const isUserRegistered = await checkUserExists(session.user.email);
-      if (isUserRegistered === false) {
-        await prisma.users.create({
-          data: {
-            user_email: session.user.email,
-          },
-        });
+      if (!isUserRegistered) {
+        try {
+          await prisma.users.create({
+            data: {
+              user_email: session.user.email,
+            },
+          });
+        } catch (e) {
+          throw e;
+        }
         return session;
       } else {
         return session;

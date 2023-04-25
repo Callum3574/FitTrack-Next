@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import Hamburger from "hamburger-react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { convertFirstLetterToUpperCase } from "@/utils/toUpperCase";
 
 interface NavbarProps {}
 
@@ -13,10 +14,6 @@ const Navbar: FC<NavbarProps> = ({}) => {
   const handleNav = () => {
     setNav(!nav);
     console.log(nav);
-  };
-
-  const catchFirstName = (name: string): string => {
-    return name[0].toUpperCase() + name.slice(1, name.length).split(" ")[0];
   };
 
   return (
@@ -39,7 +36,9 @@ const Navbar: FC<NavbarProps> = ({}) => {
             <li className="p-4 cursor-pointer font-thin">
               {!session
                 ? "Login"
-                : `Welcome, ${catchFirstName(session?.user.name)}`}
+                : `Welcome, ${convertFirstLetterToUpperCase(
+                    session.user.name
+                  )}`}
             </li>
           </Link>
         </ul>

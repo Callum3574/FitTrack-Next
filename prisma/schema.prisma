@@ -10,8 +10,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model All_Exercises {
+model Users {
   id Int @id @default(autoincrement())
-  name String @unique
+  user_email String @unique
+  height Int?
+  age Int?
+  weight Float?
+  walks Walks[]
+  runs Runs[]
+  goals Goals[]
+}
+
+model Walks {
+  id Int @id @default(autoincrement())
+  walk Users @relation(fields: [user_id], references: [id])
+  user_id Int
+  distance Int
+  date DateTime
+  time DateTime
+  calories Int?
+  location String
+  steps Int
+}
+
+model Runs {
+  id Int @id @default(autoincrement())
+  run Users @relation(fields: [user_id], references: [id])
+  user_id Int
+  distance Int
+  date DateTime
+  time DateTime
+  calories Int
+  location String
+  steps Int
+}
+
+model Goals {
+  id Int @id @default(autoincrement())
+  goals Users @relation(fields: [user_id], references: [id])
+  user_id Int
+  target_type String
+  target String
+  target_date DateTime
+}
+
+model Workouts {
+  id Int @id @default(autoincrement())
+  workout_type String @unique
 }
 

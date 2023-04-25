@@ -1,10 +1,9 @@
 import Signup from "@/components/Auth/Signup";
-import { FC } from "react";
-import { CgProfile } from "react-icons/cg";
+import { NextPage } from "next";
 
 interface indexProps {}
 
-const index: FC<indexProps> = ({}) => {
+const CreateUser: NextPage<indexProps> = ({}) => {
   return (
     <div>
       <Signup />
@@ -12,4 +11,4 @@ const index: FC<indexProps> = ({}) => {
   );
 };
 
-export default index;
+export default CreateUser;

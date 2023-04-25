@@ -1,9 +1,9 @@
 import Login from "@/components/Auth/Login";
-import { FC } from "react";
+import { NextPage } from "next";
 
 interface indexProps {}
 
-const index: FC<indexProps> = ({}) => {
+const SignIn: NextPage<indexProps> = ({}) => {
   return (
     <div>
       <Login />
@@ -11,4 +11,4 @@ const index: FC<indexProps> = ({}) => {
   );
 };
 
-export default index;
+export default SignIn;

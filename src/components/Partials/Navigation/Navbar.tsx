@@ -15,6 +15,10 @@ const Navbar: FC<NavbarProps> = ({}) => {
     console.log(nav);
   };
 
+  const catchFirstName = (name: string): string => {
+    return name[0].toUpperCase() + name.slice(1, name.length).split(" ")[0];
+  };
+
   return (
     <div className=" h-24 max-w-full mx-auto px-1 text-white mb-10 top-0 relative border-b border-[#53B3CB]">
       <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-1 text-white w-full">
@@ -33,7 +37,9 @@ const Navbar: FC<NavbarProps> = ({}) => {
           <li className="p-4 cursor-pointer font-thin">Community</li>
           <Link href="/login">
             <li className="p-4 cursor-pointer font-thin">
-              {!session ? "Login" : `Welcome, ${session.user.name}`}
+              {!session
+                ? "Login"
+                : `Welcome, ${catchFirstName(session?.user.name)}`}
             </li>
           </Link>
         </ul>

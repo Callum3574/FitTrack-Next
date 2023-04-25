@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { BsActivity, BsGraphUpArrow } from "react-icons/bs";
-import { BiAddToQueue } from "react-icons/bi";
+import { MdAdd } from "react-icons/md";
 import { GiAchievement } from "react-icons/gi";
+import Link from "next/link";
 
 interface DashNavProps {}
 
@@ -15,12 +16,14 @@ const DashNav: FC<DashNavProps> = ({}) => {
         >
           <BsActivity size={40} className="text-white" />
         </li>
-        <li
-          className="rounded-xl w-12 h-12 flex-none items-center flex justify-center transition duration-300 ease-in-out hover:bg-slate-500 cursor-pointer tooltip"
-          data-tip="Add exercise"
-        >
-          <BiAddToQueue size={40} className="text-white" />
-        </li>
+        <Link href="/addworkout">
+          <li
+            className="rounded-xl w-12 h-12 flex-none items-center flex justify-center transition duration-300 ease-in-out hover:bg-slate-500 cursor-pointer tooltip"
+            data-tip="Add exercise"
+          >
+            <MdAdd size={40} className="text-white" />
+          </li>
+        </Link>
         <li
           className="rounded-xl w-12 h-12 flex-none items-center flex justify-center transition duration-300 ease-in-out hover:bg-slate-500 cursor-pointer tooltip"
           data-tip="Goals"

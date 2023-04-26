@@ -1,3 +1,4 @@
+import { Walk } from "@prisma/client";
 import { Session } from "next-auth";
 
 //Auth
@@ -44,4 +45,22 @@ export interface ExerciseData {
   steps: string;
   duration: string;
   timeAndDate: string;
+}
+
+//View all workouts
+
+export interface WalksAndRuns {
+  id: number;
+  user_email: string;
+  distance: number;
+  date: Date;
+  time: string;
+  calories: number | null;
+  location: string;
+  steps: number;
+  duration: number;
+}
+
+export interface Runs {
+  runs: WalksAndRuns[];
 }

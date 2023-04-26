@@ -7,9 +7,26 @@ import ProfileCard from "@/components/ProfileCard/ProfileCard";
 import { DashboardProps } from "../../../Types";
 import { NextPage } from "next";
 import { useSession } from "next-auth/react";
+import { useQuery } from "@tanstack/react-query";
 
 const Dashboard: NextPage<DashboardProps> = ({}) => {
   const { data: session }: { data: any } = useSession();
+
+  // UseQuery to fetch data (after 20 secs, data considered stale)
+  // If data is fresh, it will used cached data repeatedly
+  // If stale, data will be re-fetched on window refocus, reconnect or re-mounting
+  // The 'key' is used as a unique identifier to re-grab cached data
+
+  const { isLoading, error, data } = useQuery<any>(
+    ["workouts"],
+    async () =>
+      fetch(`./api/workouts/${session.user.email}`).then((res) => res.json()),
+    {
+      staleTime: 20000,
+    }
+  );
+
+  console.log(data);
 
   return (
     <div className="col-span-10 space-y-4 ">

@@ -38,7 +38,6 @@ const AddExercise: FC<AddExerciseProps> = ({}) => {
   const handleExerciseType = (
     e: React.ChangeEvent<HTMLSelectElement>
   ): void => {
-    console.log(e.target.value);
     const formInputCopy = { ...formInput };
     formInputCopy.exerciseType = e.target.value;
     setFormInput(formInputCopy);

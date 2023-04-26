@@ -1,10 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../../prisma/primsa";
+import { ExerciseData } from "../../../../Types";
 const TYPE_RUN = "run";
 const TYPE_WALK = "walk";
 
 type Data = {
-  name: string;
+  res: string;
+};
+
+const addToDB = async (exerciseData: ExerciseData, type: string) => {
+  const dynamicType: any = (prisma as any)[type];
+  await dynamicType.create({
+    data: {
+      user_email: exerciseData.user,
+      distance: parseInt(exerciseData.distance),
+      date: new Date(exerciseData.timeAndDate.split("T")[0]),
+      time: exerciseData.timeAndDate.split("T")[1],
+      calories: parseInt(exerciseData.calories),
+      location: exerciseData.location,
+      steps: parseInt(exerciseData.steps),
+      duration: parseInt(exerciseData.duration),
+    },
+  });
 };
 
 export const handler = async (
@@ -12,34 +29,13 @@ export const handler = async (
   res: NextApiResponse<Data>
 ) => {
   if (req.method === "POST") {
-    const formData = req.body;
-    const {
-      exerciseType,
-      location,
-      duration,
-      calories,
-      timeAndDate,
-      distance,
-      user,
-      steps,
-    } = req.body;
-    console.log(user);
-
-    if (exerciseType === TYPE_RUN) {
-      const newWalk = await prisma.walks.create({
-        data: {
-          user_email: user,
-          distance: parseInt(distance),
-          date: timeAndDate.slice("T")[0],
-          time: timeAndDate.slice("T")[1],
-          calories: parseInt(calories),
-          location: location,
-          steps: parseInt(steps),
-          duration: parseInt(duration),
-        },
-      });
+    if (req.body.formInput.exerciseType === TYPE_WALK) {
+      await addToDB(req.body.formInput, TYPE_WALK);
+    } else if (req.body.formInput.exerciseType === TYPE_RUN) {
+      await addToDB(req.body.formInput, TYPE_RUN);
     }
   }
+  res.status(200).json({ res: "success" });
 };
 
 export default handler;

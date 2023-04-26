@@ -8,12 +8,12 @@ const AddExercise: FC<AddExerciseProps> = ({}) => {
   const { data: session }: { data: any } = useSession();
 
   const [amountOfInputs, setAmountOfInputs] = useState<AmountOfInputs[]>([
-    { name: "ExerciseType", type: "text" },
-    { name: "Location", type: "text" },
-    { name: "Duration", type: "number" },
-    { name: "Calories", type: "number" },
-    { name: "TimeAndDate", type: "datetime-local" },
-    { name: "Distance", type: "number" },
+    { name: "location", type: "text" },
+    { name: "duration", type: "number" },
+    { name: "calories", type: "number" },
+    { name: "timeAndDate", type: "datetime-local" },
+    { name: "distance", type: "number" },
+    { name: "steps", type: "number" },
   ]);
 
   const [formInput, setFormInput] = useState<FormInput>({
@@ -23,6 +23,7 @@ const AddExercise: FC<AddExerciseProps> = ({}) => {
     calories: "",
     timeAndDate: "",
     distance: "",
+    steps: "",
     user: session?.user.email,
   });
 
@@ -31,6 +32,16 @@ const AddExercise: FC<AddExerciseProps> = ({}) => {
     setFormInput((prev) => {
       return { ...prev, [name]: value };
     });
+    console.log(formInput);
+  };
+
+  const handleExerciseType = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    console.log(e.target.value);
+    const formInputCopy = { ...formInput };
+    formInputCopy.exerciseType = e.target.value;
+    setFormInput(formInputCopy);
   };
 
   const handleFormSubmit = async (e: any) => {
@@ -57,6 +68,16 @@ const AddExercise: FC<AddExerciseProps> = ({}) => {
         onSubmit={handleFormSubmit}
         className="flex flex-col items-center justify-center"
       >
+        <select
+          className="select w-full max-w-xs"
+          onChange={handleExerciseType}
+        >
+          <option disabled selected>
+            Pick your exercise
+          </option>
+          <option value="run">Run</option>
+          <option value="walk">Walk</option>
+        </select>
         {amountOfInputs.map((inputType: AmountOfInputs, i: number) => {
           return (
             <div key={i} className="form-control w-full max-w-xs">

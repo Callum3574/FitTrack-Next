@@ -31,4 +31,17 @@ export interface FormInput {
   timeAndDate?: string;
   distance: string;
   user: string;
+  steps: string;
+}
+
+export interface ExerciseData {
+  user: string;
+  distance: string;
+  date: Date;
+  time: string;
+  calories: string;
+  location: string;
+  steps: string;
+  duration: string;
+  timeAndDate: string;
 }

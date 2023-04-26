@@ -10,7 +10,7 @@ interface RecentActivityProps {}
 const RecentActivity: FC<RecentActivityProps> = ({}) => {
   return (
     <div className="w-full sm:w-full md:w-2/3 lg:w-1/2 xl:w-1/2 px-4 py-4 h-auto">
-      <div className="bg-gradient-to-tr from-[#21445d] to-[#32616c] text-white p-8 rounded-lg h-80 shadow-2xl hover:shadow-lg transform hover:scale-105 transition duration-300 relative justify-center items-center flex flex-col ">
+      <div className="bg-gradient-to-tr from-[#21445d] to-[#32616c] text-white p-8 rounded-lg h-auto shadow-2xl hover:shadow-lg transform hover:scale-105 transition duration-300 relative justify-center items-center flex flex-col ">
         <div className="flex justify-between">
           <h1 className="text-3xl font-bold mb-4">Recent Activity</h1>
         </div>

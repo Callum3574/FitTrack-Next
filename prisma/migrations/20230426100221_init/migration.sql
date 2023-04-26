@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Runs" ALTER COLUMN "time" SET DATA TYPE TEXT;

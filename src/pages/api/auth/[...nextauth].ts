@@ -1,9 +1,10 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-
+import { checkUserExists } from "@/utils/checkUserExists";
+import NextAuth, { NextAuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import FacebookProvider from "next-auth/providers/facebook";
-import GithubProvider from "next-auth/providers/github";
+import { prisma } from "../../../../prisma/primsa";
+import Error from "next/error";
 
+//setting up Google Provider
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -14,8 +15,26 @@ export const authOptions: NextAuthOptions = {
   theme: {
     colorScheme: "light",
   },
+  //Callbacks enable further control of user. This is used to ensure when a user is singed in with Google, they are registered on the database
   callbacks: {
-    //
+    async session({ session }: any) {
+      //Checking if user is on DB
+      const isUserRegistered = await checkUserExists(session.user.email);
+      if (!isUserRegistered) {
+        try {
+          await prisma.users.create({
+            data: {
+              user_email: session.user.email,
+            },
+          });
+        } catch (e) {
+          throw e;
+        }
+        return session;
+      } else {
+        return session;
+      }
+    },
   },
   secret: process.env.JWT_SECRET,
 };

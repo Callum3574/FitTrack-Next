@@ -16,39 +16,41 @@ model Users {
   height Int?
   age Int?
   weight Float?
-  walks Walks[]
-  runs Runs[]
+  walks Walk[]
+  runs Run[]
   goals Goals[]
 }
 
-model Walks {
+model Walk {
   id Int @id @default(autoincrement())
-  walk Users @relation(fields: [user_id], references: [id])
-  user_id Int
+  walk Users @relation(fields: [user_email], references: [user_email])
+  user_email String
   distance Int
   date DateTime
-  time DateTime
+  time String
   calories Int?
   location String
   steps Int
+  duration Int
 }
 
-model Runs {
+model Run {
   id Int @id @default(autoincrement())
-  run Users @relation(fields: [user_id], references: [id])
-  user_id Int
+  run Users @relation(fields: [user_email], references: [user_email])
+  user_email String
   distance Int
   date DateTime
-  time DateTime
-  calories Int
+  time String
+  calories Int?
   location String
   steps Int
+  duration Int
 }
 
 model Goals {
   id Int @id @default(autoincrement())
-  goals Users @relation(fields: [user_id], references: [id])
-  user_id Int
+  goals Users @relation(fields: [user_email], references: [user_email])
+  user_email String
   target_type String
   target String
   target_date DateTime

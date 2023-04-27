@@ -16,14 +16,14 @@ model Users {
   height Int?
   age Int?
   weight Float?
-  walks Walk[]
-  runs Run[]
   goals Goals[]
+  workouts UserWorkouts[]
 }
 
-model Walk {
+model UserWorkouts {
   id Int @id @default(autoincrement())
-  walk Users @relation(fields: [user_email], references: [user_email])
+  workouts Users @relation(fields: [user_email], references: [user_email])
+  workout_type String
   user_email String
   distance Int
   date DateTime
@@ -34,18 +34,6 @@ model Walk {
   duration Int
 }
 
-model Run {
-  id Int @id @default(autoincrement())
-  run Users @relation(fields: [user_email], references: [user_email])
-  user_email String
-  distance Int
-  date DateTime
-  time String
-  calories Int?
-  location String
-  steps Int
-  duration Int
-}
 
 model Goals {
   id Int @id @default(autoincrement())

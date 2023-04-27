@@ -24,7 +24,7 @@ const AddExercise: FC<AddExerciseProps> = ({}) => {
     timeAndDate: "",
     distance: "",
     steps: "",
-    user: session?.user.email,
+    user_email: session?.user.email,
   });
 
   const handleFormInput = (e: React.ChangeEvent<HTMLInputElement>): void => {

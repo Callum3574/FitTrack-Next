@@ -31,12 +31,12 @@ export interface FormInput {
   calories: string;
   timeAndDate?: string;
   distance: string;
-  user: string;
+  user_email: string;
   steps: string;
 }
 
 export interface ExerciseData {
-  user: string;
+  user_email: string;
   distance: string;
   date: Date;
   time: string;
@@ -45,12 +45,14 @@ export interface ExerciseData {
   steps: string;
   duration: string;
   timeAndDate: string;
+  exerciseType: string;
 }
 
 //View all workouts
 
 export interface WalksAndRuns {
   id: number;
+  workout_type: String;
   user_email: string;
   distance: number;
   date: Date;
@@ -61,6 +63,10 @@ export interface WalksAndRuns {
   duration: number;
 }
 
-export interface Runs {
-  runs: WalksAndRuns[];
+export interface FetchedWorkouts {
+  userWorkouts: WalksAndRuns[];
+}
+
+export interface RecentActivityProps {
+  userWorkouts: FetchedWorkouts;
 }

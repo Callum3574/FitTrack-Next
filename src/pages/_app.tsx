@@ -16,13 +16,13 @@ export default function App({
   //!These are both contexts
   return (
     <main>
-      <QueryClientProvider client={queryClient}>
-        <SessionProvider session={session}>
+      <SessionProvider session={session}>
+        <QueryClientProvider client={queryClient}>
           <Navbar />
           <Component {...pageProps} />
           <Footer />
-        </SessionProvider>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </SessionProvider>
     </main>
   );
 }

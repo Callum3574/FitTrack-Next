@@ -7,6 +7,7 @@ type Data = {
 };
 
 const addToDB = async (exerciseData: ExerciseData) => {
+  console.log(exerciseData);
   await prisma.userWorkouts.create({
     data: {
       user_email: exerciseData.user_email,
@@ -26,10 +27,14 @@ export const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) => {
-  if (req.method === "POST") {
-    addToDB(req.body.formInput);
+  try {
+    if (req.method === "POST") {
+      await addToDB(req.body.formInput);
+    }
+    res.status(200).json({ res: "success" });
+  } catch (e) {
+    res.status(500).json({ res: e });
   }
-  res.status(200).json({ res: "success" });
 };
 
 export default handler;

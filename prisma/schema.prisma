@@ -39,9 +39,11 @@ model Goals {
   id Int @id @default(autoincrement())
   goals Users @relation(fields: [user_email], references: [user_email])
   user_email String
-  target_type String
+  type String
   target String
-  target_date DateTime
+  timeFrame String
+  goalDesc String
+  goalName String
 }
 
 model Workouts {

@@ -1,8 +1,7 @@
 import { FC } from "react";
+import { ProgressCardProps } from "../../../Types";
 
-interface ProgressCardProps {}
-
-const ProgressCard: FC<ProgressCardProps> = ({}) => {
+const ProgressCard: FC<ProgressCardProps> = ({ data }) => {
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 px-4 py-4">
       <div className="bg-gradient-to-tr from-[#21445d] to-[#32616c] text-white p-8 rounded-lg h-60 shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300">

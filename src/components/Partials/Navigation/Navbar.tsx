@@ -12,8 +12,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
   const { data: session } = useSession();
 
   const handleNav = () => {
-    setNav(!nav);
-    console.log(nav);
+    setOpen(!isOpen);
   };
 
   return (
@@ -25,39 +24,63 @@ const Navbar: FC<NavbarProps> = ({}) => {
 
         <ul className="text-[#f2f2f2] text-xl hidden md:flex">
           <Link href="/">
-            <li className="p-4 cursor-pointer font-thin">Home</li>
+            <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
+              Home
+            </li>
           </Link>
-          <li className="p-4 cursor-pointer font-thin">About</li>
+          <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
+            About
+          </li>
           <Link href="/workout">
-            <li className="p-4 cursor-pointer font-thin">Workout</li>
+            <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
+              Workout
+            </li>
           </Link>
-          <li className="p-4 cursor-pointer font-thin">Community</li>
+          <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
+            Community
+          </li>
           <Link href="/login">
-            <li className="p-4 cursor-pointer font-thin">
+            <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
               {!session
                 ? "Login"
                 : `Welcome, ${convertFirstLetterToUpperCase(
-                    session.user.name
+                    session?.user?.name
                   )}`}
             </li>
           </Link>
         </ul>
         <div className="md:hidden">
-          <Hamburger color="#53B3CB" toggled={isOpen} toggle={setOpen} />
+          <Hamburger color="#53B3CB" toggled={isOpen} toggle={handleNav} />
         </div>
       </div>
       {isOpen && (
-        <div className="top-0 left-0 right-0 origin-top animate-open-menu bg-[#0c090d] ">
-          <ul className="text-[#f2f2f2] text-4xl md:hidden flex flex-col text-center">
+        <div
+          className="relative top-0 left-0 right-0 origin-top animate-open-menu bg-[#0c090d] w-full border-b border-[#53B3CB]"
+          style={{ zIndex: "999" }}
+        >
+          <ul
+            className="text-white text-4xl md:hidden flex flex-col text-center"
+            onClick={handleNav}
+          >
             <Link href="/">
-              <li className="p-4 cursor-pointer font-thin">Home</li>
+              <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
+                Home
+              </li>
             </Link>
-            <li className="p-4 cursor-pointer font-thin">About</li>
-            <li className="p-4 cursor-pointer font-thin">Workout</li>
-            <li className="p-4 cursor-pointer font-thin">Community</li>
+            <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
+              About
+            </li>
+            <Link href="/workout">
+              <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
+                Workout
+              </li>
+            </Link>
+            <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
+              Community
+            </li>
             <Link href="/login">
-              <li className="p-4 cursor-pointer font-thin">
-                {!session ? "Login" : `Welcome, ${session.user.name}`}
+              <li className="p-4 cursor-pointer font-thin transition duration-300 hover:text-[#53B3CB]">
+                {!session ? "Login" : `Welcome, ${session?.user?.name}`}
               </li>
             </Link>
           </ul>

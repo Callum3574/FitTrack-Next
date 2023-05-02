@@ -17,6 +17,8 @@ const ProfileCard: FC<ProfileCardProps> = ({ session }: ProfileCardProps) => {
         ></img>
 
         <h1 className="text-2xl font-bold mt-5">Callum Hall</h1>
+        <button>Update details</button>
+
         <div className="flex space-x-8 mt-5">
           <div className="flex flex-col items-center justify-center space-y-2">
             <span>Height</span>

@@ -14,17 +14,17 @@ const Login: FC<SignupProps> = ({}) => {
 
   if (session) {
     return (
-      <div>
+      <div className="flex flex-col items-center justify-center">
         <h1 className="text-4xl text-white text-center">
-          Welcome, {session.user.name}
+          Welcome, {session?.user?.name}
         </h1>
         <img
-          src={session.user.image}
+          src={session?.user?.image}
           alt="Profile Picture"
           className="mx-auto rounded-full mt-5"
         />
         <button
-          className="rounded-lg bg-slate-400 w-20 h-10"
+          className="rounded-lg bg-slate-400 w-20 h-10 mt-5 text-black"
           onClick={() => signOut()}
         >
           LOGOUT
@@ -58,7 +58,7 @@ const Login: FC<SignupProps> = ({}) => {
             required
           ></input>
           <button
-            onClick={() => signIn()}
+            onClick={() => signIn("google")}
             className="bg-[#53B3CB] w-full rounded-md font-medium my-6 py-2 mt-[3rem] text-black"
           >
             SIGN IN WITH GOOGLE

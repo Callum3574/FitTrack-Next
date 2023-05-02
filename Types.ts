@@ -1,21 +1,24 @@
-import { Walk } from "@prisma/client";
-import { Session } from "next-auth";
-
 //Auth
 export interface SessionProps {
   expires: string;
   user: {
     name: string;
     email: string;
-    image?: string;
+    image: string;
   };
 }
 
 //Dashboard
 export interface ProfileCardProps {
-  session: SessionProps[];
+  session: any;
+}
+export interface RecentActivityProps {
+  data: WalksAndRuns[];
 }
 
+export interface TotalsProps extends RecentActivityProps {}
+export interface FitnessOverviewProps extends RecentActivityProps {}
+export interface ProgressCardProps extends RecentActivityProps {}
 export interface DashboardProps {}
 
 //Add new exercise
@@ -61,12 +64,4 @@ export interface WalksAndRuns {
   location: string;
   steps: number;
   duration: number;
-}
-
-export interface FetchedWorkouts {
-  userWorkouts: WalksAndRuns[];
-}
-
-export interface RecentActivityProps {
-  userWorkouts: FetchedWorkouts;
 }

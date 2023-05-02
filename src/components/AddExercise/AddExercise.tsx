@@ -41,6 +41,8 @@ const AddExercise: FC<AddExerciseProps> = ({}) => {
     const formInputCopy = { ...formInput };
     formInputCopy.exerciseType = e.target.value;
     setFormInput(formInputCopy);
+
+    console.log(formInput);
   };
 
   const handleFormSubmit = async (e: any) => {
